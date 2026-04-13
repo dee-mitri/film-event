@@ -6,12 +6,13 @@
     <title>Nocturnal Visions | Flatiron Studio Screening</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* --- CORE VARIABLES --- */
         :root {
             --bg-dark: #05070a;
-            --primary-accent: #ff4e50;
-            --secondary-accent: #f9d423;
+            --primary-accent: #ff4e50; /* Vibrant Neon Red/Orange */
+            --secondary-accent: #f9d423; /* Cinematic Gold */
             --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --text-main: #f0f0f0;
             --text-muted: #a0a5b0;
         }
@@ -26,11 +27,29 @@
             scroll-behavior: smooth;
         }
 
-        h1, h2, h3 { font-family: 'Cinzel', serif; font-weight: 700; }
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
 
-        /* --- STUNNING BACKGROUND --- */
+        /* --- SCROLL ANIMATION UTILITIES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -38,165 +57,307 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            /* Using a high-quality cinematic film beam background */
             background: 
-                linear-gradient(to bottom, rgba(5,7,10,0.5), rgba(5,7,10,1)),
-                url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=2000');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+                radial-gradient(circle at center, rgba(5,7,10,0.4) 0%, rgba(5,7,10,1) 100%),
+                url('background.jpg') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
         }
 
-        /* Overlay for the "Film Flicker" effect */
-        .hero::after {
-            content: "";
+        /* Adds a subtle animated glow behind the text */
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://64.media.tumblr.com/tumblr_m2v7p3R2R51r4xjo2o1_500.gifv'); /* Subtle film grain/dust */
-            opacity: 0.1;
-            pointer-events: none;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-accent);
+            filter: blur(150px);
+            opacity: 0.3;
+            animation: pulse 6s infinite alternate;
         }
 
-        .hero-content { z-index: 10; }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.2; }
+            100% { transform: scale(1.5); opacity: 0.4; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
 
         .hero-content h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
+            font-size: 5.5rem;
             margin: 0;
-            letter-spacing: 8px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            background: linear-gradient(135deg, #fff 30%, var(--secondary-accent));
+            background: linear-gradient(135deg, #fff, var(--text-muted));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5));
+            text-shadow: 0px 10px 30px rgba(0,0,0,0.8);
         }
 
-        /* --- GLASS SECTIONS --- */
-        .section-padding { padding: 140px 0; }
-
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 60px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease;
+        .hero-content p {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin: 20px 0 50px 0;
+            text-transform: uppercase;
         }
 
-        .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-
-        .award-highlight {
-            border: 1px solid rgba(249, 212, 35, 0.4);
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(249, 212, 35, 0.02));
-        }
-
-        /* --- ANIMATIONS --- */
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
+        /* --- PREMIUM BUTTON --- */
         .btn {
             display: inline-block;
-            padding: 20px 50px;
+            padding: 18px 45px;
             font-family: 'Cinzel', serif;
-            color: #fff;
-            border: 2px solid var(--primary-accent);
-            text-decoration: none;
-            letter-spacing: 3px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            transition: 0.5s;
-            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            background: transparent;
+            border: 1px solid var(--primary-accent);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.4s;
         }
 
         .btn:hover {
             background: var(--primary-accent);
-            box-shadow: 0 0 40px rgba(255, 78, 80, 0.6);
-            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 78, 80, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* --- GLASSMORPHISM SECTIONS --- */
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Split Layout for Studio & Award */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .glass-panel h2 {
+            font-size: 2.8rem;
+            margin-top: 0;
+            color: var(--secondary-accent);
+            border-bottom: 1px solid rgba(249, 212, 35, 0.3);
+            padding-bottom: 15px;
+        }
+
+        .glass-panel p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        /* The Award Highlight */
+        .award-highlight {
+            position: relative;
+        }
+        
+        .award-highlight::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+            border-radius: 16px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+
+        /* --- INFO GRID --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
 
         .card {
             background: var(--glass-bg);
-            border-left: 3px solid var(--primary-accent);
-            padding: 30px;
-            border-radius: 0 15px 15px 0;
-            transition: 0.3s;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 10px;
+            transition: 0.4s;
         }
 
-        .card:hover { background: rgba(255,255,255,0.08); }
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
 
-        footer { text-align: center; padding: 100px 0; opacity: 0.6; font-size: 0.8rem; letter-spacing: 1px; }
+        .card h3 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-top: 0;
+        }
 
-        @media (max-width: 900px) { .split-layout { grid-template-columns: 1fr; } }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            line-height: 2.2;
+            color: var(--text-muted);
+        }
+
+        .card ul li strong {
+            color: var(--text-main);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            background: #020305;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 900px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            .split-layout { grid-template-columns: 1fr; }
+            .glass-panel { padding: 40px 20px; }
+        }
     </style>
 </head>
 <body>
 
     <header class="hero">
-        <div class="container hero-content">
-            <h1 class="reveal active">Nocturnal Visions</h1>
-            <p class="reveal active" style="letter-spacing: 5px;">THE FLATIRON FILMMAKER SHOWCASE</p>
-            <a href="#details" class="btn reveal active">Enter the Studio</a>
+        <div class="container hero-content reveal active">
+            <h1>Nocturnal Visions</h1>
+            <p>An Independent Film Showcase in Flatiron</p>
+            <a href="#about" class="btn">Discover the Event</a>
         </div>
     </header>
 
-    <section id="details" class="section-padding">
+    <section id="about" class="section-padding">
         <div class="container split-layout">
+            
             <div class="glass-panel reveal">
-                <h2 style="color: var(--secondary-accent);">Flatiron Creative Space</h2>
-                <p>We provide the stage; you provide the vision. Our Flatiron studio is more than just a location—it's a high-performance ecosystem for filmmakers. Tonight, we open our doors to celebrate the raw, the unique, and the bold.</p>
-                <p>Network with NY’s finest cinematographers and editors in an environment designed for visual excellence.</p>
+                <h2>Our Flatiron Studio</h2>
+                <p>Located in the creative heart of New York's Flatiron District, our studio serves as a sanctuary for visual storytellers. We created this space to tear down the barriers between emerging talent and the resources they need.</p>
+                <p>Tonight, our professional soundstages are transformed into an intimate cinema, providing a platform for filmmakers to screen their unique, unfiltered visions to an audience of industry peers and cinema lovers.</p>
             </div>
 
             <div class="glass-panel award-highlight reveal">
-                <h2 style="color: var(--primary-accent);">The Grand Prize</h2>
-                <p>The most exceptional film of the night wins the <strong>Studio Residency Award</strong>.</p>
-                <ul style="list-style: none; padding: 0; color: #fff; font-weight: 600;">
-                    <li>✓ Full Access to our Flatiron Soundstage</li>
-                    <li>✓ Use of In-House Lighting Rig</li>
-                    <li>✓ Free Booking for your next production</li>
-                </ul>
-                <p>Turn your award-winning vision into a feature-length reality.</p>
+                <h2>The Vanguard Award</h2>
+                <p>We believe in actively investing in the next generation of cinema. That is why this isn't just a screening—it's a launchpad.</p>
+                <p style="font-size: 1.25rem; color: #fff; border-left: 4px solid var(--primary-accent); padding-left: 15px; margin: 30px 0;">
+                    One standout filmmaker tonight will be honored with the <strong>Nocturnal Vanguard Award</strong>. 
+                </p>
+                <p>The winner will receive an official laurel, but more importantly, they will be granted <strong>free, exclusive use of our Flatiron studio location</strong> for any future shooting they may have to bring their next project to life.</p>
             </div>
+
         </div>
     </section>
 
-    <section class="section-padding" style="background: rgba(0,0,0,0.3);">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-                <div class="card reveal">
-                    <h3>7:00 PM</h3>
-                    <p>Red Carpet & Flatiron Mixer</p>
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="container reveal">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-size: 3rem; color: var(--text-main);">Event Details</h2>
+            </div>
+            
+            <div class="grid-layout">
+                <div class="card">
+                    <h3>Official Selections</h3>
+                    <ul>
+                        <li><strong>Echoes of Silence</strong> - Dir. Elena Petrova</li>
+                        <li><strong>The Midnight Loop</strong> - Dir. Marcus Thorne</li>
+                        <li><strong>Last Light</strong> - Dir. Chloe Villeneuve</li>
+                        <li><strong>Concrete Dreams</strong> - Dir. James Sato</li>
+                    </ul>
                 </div>
-                <div class="card reveal">
-                    <h3>8:30 PM</h3>
-                    <p>The Showings: Part I & II</p>
+
+                <div class="card">
+                    <h3>Itinerary</h3>
+                    <ul>
+                        <li><strong>7:00 PM:</strong> Studio Doors Open / Mixer</li>
+                        <li><strong>8:00 PM:</strong> Screenings Commence</li>
+                        <li><strong>10:00 PM:</strong> Vanguard Award Presentation</li>
+                        <li><strong>10:30 PM:</strong> Post-Screening Networking</li>
+                    </ul>
                 </div>
-                <div class="card reveal">
-                    <h3>10:30 PM</h3>
-                    <p>The Vanguard Award Ceremony</p>
+
+                <div class="card">
+                    <h3>Location</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">
+                        <strong>The Canvas Studios</strong><br>
+                        123 Flatiron Ave, Floor 4<br>
+                        New York, NY 10010
+                    </p>
+                    <p style="color: var(--primary-accent); font-size: 0.9rem; margin-top: 20px;">*Please bring your digital ticket for building entry.</p>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 100px;">
-                <a href="#" class="btn">Secure Your Ticket</a>
+
+            <div style="text-align: center; margin-top: 80px;">
+                <a href="#" class="btn">Reserve Your Seat - $20</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>THE CANVAS STUDIOS | FLATIRON DISTRICT | NEW YORK CITY</p>
-        <p>&copy; 2024 ALL RIGHTS RESERVED TO THE CREATIVE COLLECTIVE</p>
+        <div class="container">
+            <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 5px;">Nocturnal Visions</h3>
+            <p>&copy; 2024 The Canvas Studios Flatiron. Empowering Independent Filmmakers.</p>
+        </div>
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // when to trigger the animation
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        // Run on scroll
+        window.addEventListener("scroll", reveal);
+        // Run once on load to catch elements already in view
+        reveal();
     </script>
+
 </body>
 </html>
