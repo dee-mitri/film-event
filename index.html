@@ -1,14 +1,235 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Landing Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nocturnal Visions | Independent Film Screening</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; }
-        h1 { color: #333; }
+        /* --- CSS STYLES --- */
+        
+        /* Reset & Core Aesthetics */
+        :root {
+            --bg-dark: #0a0e17; /* Deep Charcoal */
+            --primary-accent: #ff7e5f; /* Sunset Orange */
+            --secondary-accent: #7b2cbf; /* Royal Purple */
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: 
+                linear-gradient(135deg, rgba(10, 14, 23, 0.95) 0%, rgba(123, 44, 191, 0.5) 100%),
+                url('background.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(to right, var(--text-light), var(--primary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin: 20px 0 40px 0;
+            font-weight: 300;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--secondary-accent), var(--primary-accent));
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 126, 95, 0.5);
+        }
+
+        /* --- Details Section --- */
+        .details {
+            padding: 100px 0;
+            background: #111622; /* Slightly lighter dark */
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .details-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-accent);
+        }
+
+        .details-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .hero-reel {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(123, 44, 191, 0.5));
+        }
+
+        /* --- Grid Section (Films/Schedule) --- */
+        .info-grid {
+            padding: 100px 0;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--text-light);
+            border-bottom: 2px solid var(--secondary-accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            color: var(--text-muted);
+            line-height: 2;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            background: #080b12;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3rem; }
+            .details-grid { grid-template-columns: 1fr; text-align: center; }
+        }
     </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my GitHub-hosted landing page.</p>
+
+    <header class="hero">
+        <div class="container hero-content">
+            <h1>Nocturnal Visions</h1>
+            <p>A Curated Screening of Independent Short Films</p>
+            <a href="#tickets" class="btn btn-primary">Get Tickets</a>
+        </div>
+    </header>
+
+    <section class="details">
+        <div class="container details-grid">
+            <div class="details-text">
+                <h2>The Event</h2>
+                <p>Join us for an immersive evening dedicated to the art of visual storytelling. Nocturnal Visions showcases groundbreaking short films from emerging directors worldwide. Experience breathtaking cinematography, intense narratives, and exclusive artist Q&As in a unique atmosphere.</p>
+            </div>
+            <div class="details-image">
+                <img src="hero-reel.png" alt="Cinematic Film Reel" class="hero-reel">
+            </div>
+        </div>
+    </section>
+
+    <section id="tickets" class="info-grid">
+        <div class="container grid-layout">
+            
+            <div class="card">
+                <h3>The Films</h3>
+                <ul>
+                    <li><strong>Echoes of Silence</strong> - Dir. Elena Petrova</li>
+                    <li><strong>The Midnight Loop</strong> - Dir. Marcus Thorne</li>
+                    <li><strong>Last Light</strong> - Dir. Chloe Villeneuve</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Special Guest</h3>
+                <p><strong>Jessica Chen</strong></p>
+                <p style="color: var(--text-muted);">Acclaimed Cinematographer Jessica Chen will join us for a post-screening discussion on visual language in independent cinema.</p>
+            </div>
+
+            <div class="card">
+                <h3>Schedule</h3>
+                <ul>
+                    <li>7:00 PM: Doors Open & Drinks</li>
+                    <li>7:30 PM: Screenings Begin</li>
+                    <li>9:30 PM: Director Q&A</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="container" style="text-align: center; margin-top: 60px;">
+            <a href="#" class="btn btn-primary">Purchase Tickets - $15</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Nocturnal Visions Festival. All rights reserved.</p>
+            <p>123 Cinema Ave, New York, NY</p>
+        </div>
+    </footer>
+
 </body>
 </html>
