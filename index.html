@@ -5,263 +5,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nocturnal Visions | Flatiron Studio Screening</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        /* --- CORE VARIABLES --- */
-        :root {
-            --bg-dark: #05070a;
-            --primary-accent: #ff4e50; /* Vibrant Neon Red/Orange */
-            --secondary-accent: #f9d423; /* Cinematic Gold */
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f0f0f0;
-            --text-muted: #a0a5b0;
-        }
+<style>
+    /* --- CORE VARIABLES --- */
+    :root {
+        --bg-dark: #05070a;
+        --primary-accent: #ff4e50; 
+        --secondary-accent: #f9d423; 
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --text-main: #f0f0f0;
+        --text-muted: #a0a5b0;
+    }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-         
-          background: 
-        url('https://raw.githubusercontent.com/dee-mitri/film-event/main/Gemini_Generated_Image_erkrsgerkrsgerkr.png') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
-    color: var(--text-main);
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        background: radial-gradient(circle at center, rgba(5,7,10,0.2) 0%, rgba(5,7,10,0.9) 100%),
+                    url('https://raw.githubusercontent.com/dee-mitri/film-event/main/Gemini_Generated_Image_erkrsgerkrsgerkr.png') no-repeat center center;
+        background-size: cover;
+        background-attachment: fixed;
+        color: var(--text-main);
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
 
-        }
+    h1, h2, h3 {
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        overflow-wrap: break-word; /* Prevents text overflow */
+    }
 
-        h1, h2, h3 {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-        }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px; /* Reduced for mobile */
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
+    /* --- SCROLL ANIMATION --- */
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-        /* --- SCROLL ANIMATION UTILITIES --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* --- HERO SECTION --- */
+    .hero {
+        min-height: 100vh; /* Better for content growth */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        padding: 40px 0;
+    }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background: 
-                radial-gradient(circle at center, rgba(5,7,10,0.4) 0%, rgba(5,7,10,1) 100%),
-                url('background.jpg') no-repeat center center/cover;
-            background-attachment: fixed; /* Parallax effect */
-        }
+    .hero-content {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+    }
 
-        /* Adds a subtle animated glow behind the text */
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--primary-accent);
-            filter: blur(150px);
-            opacity: 0.3;
-            animation: pulse 6s infinite alternate;
-        }
+    .hero-content h1 {
+        font-size: clamp(2.5rem, 10vw, 5.5rem); /* Responsive typography */
+        margin: 0;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #fff, var(--text-muted));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.2; }
-            100% { transform: scale(1.5); opacity: 0.4; }
-        }
+    .hero-content p {
+        font-size: clamp(1rem, 4vw, 1.4rem);
+        color: var(--text-muted);
+        letter-spacing: 2px;
+        margin: 20px 0 40px 0;
+    }
 
-        .hero-content {
-            position: relative;
-            z-index: 10;
-        }
+    /* --- BUTTON --- */
+    .btn {
+        display: inline-block;
+        padding: 16px 35px;
+        font-family: 'Cinzel', serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid var(--primary-accent);
+        border-radius: 4px;
+        transition: 0.4s;
+        cursor: pointer;
+    }
 
-        .hero-content h1 {
-            font-size: 5.5rem;
-            margin: 0;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #fff, var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0px 10px 30px rgba(0,0,0,0.8);
-        }
+    .btn:hover {
+        background: var(--primary-accent);
+        box-shadow: 0 0 30px rgba(255, 78, 80, 0.4);
+    }
 
-        .hero-content p {
-            font-size: 1.4rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            margin: 20px 0 50px 0;
-            text-transform: uppercase;
-        }
+    /* --- LAYOUTS --- */
+    .section-padding {
+        padding: 80px 0; /* Tighter on mobile */
+    }
 
-        /* --- PREMIUM BUTTON --- */
-        .btn {
-            display: inline-block;
-            padding: 18px 45px;
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #fff;
-            background: transparent;
-            border: 1px solid var(--primary-accent);
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-            transition: 0.4s;
-            cursor: pointer;
-        }
+    .glass-panel {
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        border-radius: 15px;
+        padding: 40px 30px;
+        margin-bottom: 20px;
+    }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.4s;
-        }
+    .split-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
 
-        .btn:hover {
-            background: var(--primary-accent);
-            box-shadow: 0 0 30px rgba(255, 78, 80, 0.4);
-            transform: translateY(-3px);
-        }
+    .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
 
-        .btn:hover::before {
-            left: 100%;
-        }
+    .card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        padding: 30px;
+        border-radius: 10px;
+    }
 
-        /* --- GLASSMORPHISM SECTIONS --- */
-        .section-padding {
-            padding: 120px 0;
-        }
+    /* --- FOOTER --- */
+    footer {
+        text-align: center;
+        padding: 40px 20px;
+        background: #020305;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
 
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 60px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        /* Split Layout for Studio & Award */
-        .split-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .glass-panel h2 {
-            font-size: 2.8rem;
-            margin-top: 0;
-            color: var(--secondary-accent);
-            border-bottom: 1px solid rgba(249, 212, 35, 0.3);
-            padding-bottom: 15px;
-        }
-
-        .glass-panel p {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--text-muted);
-        }
-
-        /* The Award Highlight */
-        .award-highlight {
-            position: relative;
-        }
+    /* --- MEDIA QUERIES --- */
+    @media (max-width: 900px) {
+        .split-layout { grid-template-columns: 1fr; }
+        .section-padding { padding: 60px 0; }
         
-        .award-highlight::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
-            border-radius: 16px;
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(10px);
+        /* Fixed Backgrounds can be jittery on mobile browsers */
+        body, .hero {
+            background-attachment: scroll; 
         }
+    }
 
-        /* --- INFO GRID --- */
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            border-radius: 10px;
-            transition: 0.4s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .card h3 {
-            font-size: 1.8rem;
-            color: var(--text-main);
-            margin-top: 0;
-        }
-
-        .card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            line-height: 2.2;
-            color: var(--text-muted);
-        }
-
-        .card ul li strong {
-            color: var(--text-main);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 60px 0;
-            background: #020305;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 900px) {
-            .hero-content h1 { font-size: 3.5rem; }
-            .split-layout { grid-template-columns: 1fr; }
-            .glass-panel { padding: 40px 20px; }
-        }
-    </style>
+    @media (max-width: 480px) {
+        .glass-panel { padding: 30px 20px; }
+        .hero-content h1 { letter-spacing: 2px; }
+        .btn { width: 80%; padding: 16px 10px; } /* Full width buttons look better on tiny screens */
+    }
+</style>
 </head>
 <body>
 
@@ -341,7 +247,7 @@
     <footer>
         <div class="container">
             <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 5px;">Nocturnal Visions</h3>
-            <p>&copy; 2024 The Canvas Studios Flatiron. Empowering Independent Filmmakers.</p>
+            <p>&copy; 2026 Daylight Studio Flatiron. Empowering Independent Filmmakers.</p>
         </div>
     </footer>
 
