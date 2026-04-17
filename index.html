@@ -21,15 +21,12 @@
             margin: 0;
             padding: 0;
             font-family: 'Inter', sans-serif;
-         
-          background: 
-        url('https://raw.githubusercontent.com/dee-mitri/film-event/main/Gemini_Generated_Image_erkrsgerkrsgerkr.png') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
-    color: var(--text-main);
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-
+            background: url('https://raw.githubusercontent.com/dee-mitri/film-event/main/Gemini_Generated_Image_erkrsgerkrsgerkr.png') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         h1, h2, h3 {
@@ -62,13 +59,9 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: 
-                radial-gradient(circle at center, rgba(5,7,10,0.4) 0%, rgba(5,7,10,1) 100%),
-                url('background.jpg') no-repeat center center/cover;
-            background-attachment: fixed; /* Parallax effect */
+            background: radial-gradient(circle at center, rgba(5,7,10,0.4) 0%, rgba(5,7,10,1) 100%);
         }
 
-        /* Adds a subtle animated glow behind the text */
         .hero::before {
             content: '';
             position: absolute;
@@ -129,25 +122,10 @@
             cursor: pointer;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.4s;
-        }
-
         .btn:hover {
             background: var(--primary-accent);
             box-shadow: 0 0 30px rgba(255, 78, 80, 0.4);
             transform: translateY(-3px);
-        }
-
-        .btn:hover::before {
-            left: 100%;
         }
 
         /* --- GLASSMORPHISM SECTIONS --- */
@@ -163,9 +141,9 @@
             border-radius: 15px;
             padding: 60px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin-bottom: 40px;
         }
 
-        /* Split Layout for Studio & Award */
         .split-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -184,22 +162,6 @@
             font-size: 1.15rem;
             line-height: 1.8;
             color: var(--text-muted);
-        }
-
-        /* The Award Highlight */
-        .award-highlight {
-            position: relative;
-        }
-        
-        .award-highlight::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, #3a575a, #000000);
-            border-radius: 16px;
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(10px);
         }
 
         /* --- INFO GRID --- */
@@ -228,6 +190,9 @@
             font-size: 1.8rem;
             color: var(--text-main);
             margin-top: 0;
+            border-bottom: 1px solid var(--primary-accent);
+            display: inline-block;
+            margin-bottom: 20px;
         }
 
         .card ul {
@@ -238,10 +203,6 @@
             color: var(--text-muted);
         }
 
-        .card ul li strong {
-            color: var(--text-main);
-        }
-
         /* --- FOOTER --- */
         footer {
             text-align: center;
@@ -249,17 +210,11 @@
             background: #020305;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
-        
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
 
         /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 900px) {
             .hero-content h1 { font-size: 3.5rem; }
             .split-layout { grid-template-columns: 1fr; }
-            .glass-panel { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -269,79 +224,134 @@
         <div class="container hero-content reveal active">
             <h1>Nocturnal Visions</h1>
             <p>An Independent Film Showcase in Flatiron</p>
-            <a href="#about" class="btn">Discover the Event</a>
+            <a href="#submit" class="btn">Submit Your Film</a>
         </div>
     </header>
 
     <section id="about" class="section-padding">
         <div class="container split-layout">
-            
             <div class="glass-panel reveal">
                 <h2>Our Flatiron Studio</h2>
                 <p>Located in the creative heart of New York's Flatiron District, our studio serves as a sanctuary for visual storytellers. We created this space to tear down the barriers between emerging talent and the resources they need.</p>
                 <p>Tonight, our professional soundstages are transformed into an intimate cinema, providing a platform for filmmakers to screen their unique, unfiltered visions to an audience of industry peers and cinema lovers.</p>
             </div>
 
-            <div class="glass-panel award-highlight reveal">
+            <div class="glass-panel reveal" style="border-color: var(--secondary-accent);">
                 <h2>The Vanguard Award</h2>
                 <p>We believe in actively investing in the next generation of cinema. That is why this isn't just a screening—it's a launchpad.</p>
                 <p style="font-size: 1.25rem; color: #fff; border-left: 4px solid var(--primary-accent); padding-left: 15px; margin: 30px 0;">
-                    One standout filmmaker tonight will be honored with the <strong>Nocturnal Vanguard Award</strong>. 
+                    One standout filmmaker will be honored with the <strong>Nocturnal Vanguard Award</strong>. 
                 </p>
-                <p>The winner will receive an official laurel, but more importantly, they will be granted <strong>free, exclusive use of our Flatiron studio location</strong> for any future shooting they may have to bring their next project to life.</p>
+                <p>The winner will be granted <strong>free, exclusive use of our Flatiron studio location</strong> for any future shooting project, providing the high-end production value your next vision deserves.</p>
             </div>
-
         </div>
     </section>
 
-    <section class="section-padding" style="padding-top: 0;">
+    <section id="submit" class="section-padding" style="background: rgba(0,0,0,0.3);">
+        <div class="container">
+            <div class="glass-panel reveal">
+                <h2 style="text-align: center;">Call For Entries</h2>
+                <div class="grid-layout">
+                    <div>
+                        <h3 style="color: var(--secondary-accent);">Requirements</h3>
+                        <p>We are looking for narrative-driven works that push technical and creative boundaries.</p>
+                        <ul style="color: var(--text-muted); line-height: 2;">
+                            <li> <strong>Duration:</strong> Minimum 15 Minutes.</li>
+                            <li> <strong>Resolution: </strong> 1920x1080 or 4K</li>
+                            <li> <strong>Format:</strong> High-res .MP4 or .MOV.</li>
+                            <li> <strong>Exclusivity:</strong> Finalists must be present in NYC.</li>
+                            <li> <strong>Broadcast:</strong> Must grant streaming rights.</li>
+                        </ul>
+                    </div>
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; border-left: 1px solid var(--glass-border);">
+                        <p style="text-align: center;">Footage must be submitted via our official portal.</p>
+                        <a href="#" class="btn">Upload Submission</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
         <div class="container reveal">
-            <div style="text-align: center; margin-bottom: 40px;">
-                <h2 style="font-size: 3rem; color: var(--text-main);">Event Details</h2>
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 3.5rem; color: var(--text-main);">The Event Plan</h2>
+                <p style="color: var(--primary-accent); letter-spacing: 2px;">LIVE FROM FLATIRON </p>
             </div>
             
             <div class="grid-layout">
                 <div class="card">
-                    <h3>Official Selections</h3>
+                    <h3>The Itinerary</h3>
                     <ul>
-                        <li><strong>Echoes of Silence</strong> - Dir. Elena Petrova</li>
-                        <li><strong>The Midnight Loop</strong> - Dir. Marcus Thorne</li>
-                        <li><strong>Last Light</strong> - Dir. Chloe Villeneuve</li>
-                        <li><strong>Concrete Dreams</strong> - Dir. James Sato</li>
+                        <li><strong>5:00 PM:</strong> Guest Arrival & Photoshoot</li>
+                        <li><strong>6:00 PM:</strong> Cocktail Hour & Networking</li>
+                        <li><strong>7:00 PM:</strong> Seating & Stream Launch</li>
+                        <li><strong>7:15 PM:</strong> Official Screenings (Part I)</li>
+                        <li><strong>8:00 PM:</strong> Intermission</li>
+                        <li><strong>8:15 PM:</strong> Official Screenings (Part II)</li>
+                        <li><strong>9:30 PM:</strong> Vanguard Award Ceremony</li>
+                        <li><strong>10:00 PM:</strong> Celebration & Drinks</li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3>Itinerary</h3>
+                    <h3>Digital Experience</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 20px;">For our global audience, we are broadcasting live to<strong>Instagram</strong>.</p>
                     <ul>
-                        <li><strong>7:00 PM:</strong> Studio Doors Open / Mixer</li>
-                        <li><strong>8:00 PM:</strong> Screenings Commence</li>
-                        <li><strong>10:00 PM:</strong> Vanguard Award Presentation</li>
-                        <li><strong>10:30 PM:</strong> Post-Screening Networking</li>
+                        <li>• <strong>Live Interviews:</strong> Meet the directors.</li>                
+                        <li>• <strong>BTS Access:</strong> Behind-the-scenes studio tours.</li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3>Location</h3>
-                    <p style="color: var(--text-muted); line-height: 1.8;">
+                    <h3>Venue Logistics</h3>
+                    <p style="color: var(--text-muted);">
                         <strong>The Canvas Studios</strong><br>
                         123 Flatiron Ave, Floor 4<br>
                         New York, NY 10010
                     </p>
-                    <p style="color: var(--primary-accent); font-size: 0.9rem; margin-top: 20px;">*Please bring your digital ticket for building entry.</p>
+                    <p style="color: var(--primary-accent); font-size: 0.85rem; margin-top: 20px;">
+                        *Capacity is strictly limited to 100 guests. RSVP required for entry.
+                    </p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div style="text-align: center; margin-top: 80px;">
-                <a href="#" class="btn">Reserve Your Seat - $20</a>
+
+<section id="fine-print" class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            <div class="glass-panel reveal" style="padding: 40px; border-color: rgba(255,255,255,0.05);">
+                <div class="grid-layout" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+         
+                    <div>
+                        <h4 style="font-family: 'Cinzel'; color: var(--primary-accent); margin-top: 0;">Press & Media</h4>
+                        <p style="font-size: 0.85rem; line-height: 1.6;">
+                            For interview requests, media passes, or studio tours:<br>
+                            <a href="mailto:press@nocturnalvisions.com" style="color: #fff; text-decoration: underline;">press@nocturnalvisions.com</a>
+                        </p>
+                        <a href="#" style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Download Press Kit ↓</a>
+                    </div>
+                    <div>
+                        <h4 style="font-family: 'Cinzel'; color: var(--primary-accent); margin-top: 0;">Legal</h4>
+                        <p style="font-size: 0.85rem; line-height: 1.6;">
+                            Submitting grants Nocturnal Visions non-exclusive broadcast rights for the event stream. Finalists receive official festival laurels.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 5px;">Nocturnal Visions</h3>
-            <p>&copy; 2026 Daylight Studio Flatiron. Empowering Independent Filmmakers.</p>
+            <h3 style="font-family: 'Cinzel'; font-size: 1.7rem; color: #fff; margin-bottom: 10px; letter-spacing: 3px;">Empowering Independent Filmmakers</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Flatiron, New York City</p>
+            <div style="margin: 20px 0;">
+
+                <span style="color: var(--primary-accent); margin: 0 10px; font-size: 0.8rem; letter-spacing: 2px;">INSTAGRAM</span>
+            </div>
+            <p style="font-size: 0.7rem; color: white; margin-top: 40px;">&copy; 2026 Daylight Studio Flatiron. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -351,16 +361,14 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // when to trigger the animation
+                var elementVisible = 100;
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
-        // Run on scroll
         window.addEventListener("scroll", reveal);
-        // Run once on load to catch elements already in view
         reveal();
     </script>
 
